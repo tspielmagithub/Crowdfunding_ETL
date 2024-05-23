@@ -25,9 +25,9 @@ CREATE TABLE "Campaign" (
     "cf_id" int   NOT NULL,
     "contact_id" int   NOT NULL,
     "company_name" varchar   NOT NULL,
-    "description" text   NOT NULL,
-    "goal" double   NOT NULL,
-    "pledged" double   NOT NULL,
+    "description" varchar   NOT NULL,
+    "goal" float   NOT NULL,
+    "pledged" float   NOT NULL,
     "outcome" varchar   NOT NULL,
     "backers_count" int   NOT NULL,
     "country" varchar   NOT NULL,
@@ -51,12 +51,12 @@ CREATE TABLE "Contact" (
      )
 );
 
-ALTER TABLE "Subcategory" ADD CONSTRAINT "fk_Subcategory_subcategory_id" FOREIGN KEY("subcategory_id")
-REFERENCES "Campaign" ("subcategory_id");
-
 ALTER TABLE "Campaign" ADD CONSTRAINT "fk_Campaign_contact_id" FOREIGN KEY("contact_id")
 REFERENCES "Contact" ("contact_id");
 
 ALTER TABLE "Campaign" ADD CONSTRAINT "fk_Campaign_category_id" FOREIGN KEY("category_id")
 REFERENCES "Category" ("category_id");
+
+ALTER TABLE "Campaign" ADD CONSTRAINT "fk_Campaign_subcategory_id" FOREIGN KEY("subcategory_id")
+REFERENCES "Subcategory" ("subcategory_id");
 
